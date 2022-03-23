@@ -4,6 +4,7 @@ export class Client {
     }
 
     connect(url) {
+        let self = this;
         if (this.isConnected()) {
             console.error('Calling connect() while client is still connected to ' + url);
             return;
@@ -12,13 +13,12 @@ export class Client {
         this.connection = new WebSocket(url)
 
         this.connection.onmessage = function(event) {
-            // console.log(JSON.parse(event));
             console.log(JSON.parse(event.data));
         }
 
         this.connection.onopen = function(event) {
             console.log('Connected to ' + event.target.url);
-            this.send(JSON.stringify({ type: 'GET_CONFIG' }));
+            self.sendGetConfig();
         }
 
         this.connection.onclose = function(event) {
@@ -41,5 +41,17 @@ export class Client {
 
     send(data) {
         this.connection.send(data);
+    }
+
+    sendGetConfig() {
+        this.send(JSON.stringify({ type: 'GET_CONFIG' }));
+    }
+
+    sendPutConfig(config) {
+        this.send(JSON.stringify({ type: 'PUT_CONFIG', data: config }));
+    }
+
+    sendFireNozzle(nozzleId) {
+        this.send(JSON.stringify({ type: 'FIRE_NOZZLE', data: nozzleId }));
     }
 }
