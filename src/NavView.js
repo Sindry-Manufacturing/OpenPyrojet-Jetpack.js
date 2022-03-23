@@ -1,7 +1,10 @@
 export class NavView {
-    constructor(urlText, connectButton) {
+    constructor(urlText, connectButton, onToggleConnection) {
         this.urlText = urlText;
         this.connectButton = connectButton;
+        this.connectButton.click(function () {
+            onToggleConnection();
+        });
     }
 
     showConnected() {
