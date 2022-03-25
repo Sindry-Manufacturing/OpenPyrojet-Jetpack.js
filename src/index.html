@@ -7,10 +7,11 @@
     <meta name="author" content="OpenPyrojet">
     <title>Jetpack for OpenPyrojet</title>
 </head>
-<body>
+
+<body class="bg-light">
 
 <header>
-  <nav class="navbar navbar-dark bg-dark">
+  <nav class="navbar navbar-dark bg-dark mb-4">
     <div class="container-fluid">
       <a class="navbar-brand mb-0 h1">Jetpack for OpenPyrojet</a>
       <div class="d-flex">
@@ -22,9 +23,67 @@
 </header>
 
 <main role="main">
-  <div class="container-fluid input-group">
-      <!-- TODO -->
-  </div>
+  <section id="DisconnectedRoot" class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Not Connected</h1>
+        <p class="lead text-muted">You are currently not connected to a server.</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="ConnectedRoot" class="visually-hidden">
+
+    <!-- Configuration -->
+    <div class="container mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5>Configuration</h5>
+          <form class="mb-4 form-horizontal">
+            <div class="row mb-2">
+              <label for="nozzlePins" class="col col-form-label">Nozzle pins (save, then reboot ESP)</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="NozzlePins">
+              </div>
+            </div>
+            <div class="row mb-2">
+              <label for="heatingDuration" class="col col-form-label">Heating duration (µs)</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="HeatingDuration">
+              </div>
+            </div>
+            <div class="row mb-4">
+              <label for="triggerDelay" class="col col-form-label">Trigger delay (µs)</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="TriggerDelay">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary ">Save</button>
+          </form>
+        </div>
+      </div>
+   </div>
+
+    <!-- Fire nozzle -->
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          <h5>Actions</h5>
+          <form class="mb-4 form-horizontal">
+            <div class="row mb-4">
+              <label for="nozzleId" class="col col-form-label">Nozzle ID</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="nozzleId" value="0">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Fire</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- ConnectedRoot -->
+
 </main>
 
 </body>
