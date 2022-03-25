@@ -24,7 +24,6 @@ export class Client {
         this.connection.onclose = function(event) {
             console.log('Disconnected from ' + event.target.url);
             self.connection = null;
-            console.log('hay hoi', onDisconnected);
             onDisconnected();
         }
     }
