@@ -3,7 +3,7 @@ export class Client {
         this.connection = null;
     }
 
-    connect(url) {
+    connect(url, onDisconnected) {
         let self = this;
         if (this.isConnected()) {
             console.error('Calling connect() while client is still connected to ' + url);
@@ -23,8 +23,9 @@ export class Client {
 
         this.connection.onclose = function(event) {
             console.log('Disconnected from ' + event.target.url);
-            window.connection = null;
-            window.navView.showDisconnected();
+            self.connection = null;
+            console.log('hay hoi', onDisconnected);
+            onDisconnected();
         }
     }
 

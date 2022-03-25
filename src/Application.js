@@ -14,12 +14,15 @@ export class Application {
     }
 
     toggleConnection() {
+        let self = this;
         if (!this.client.isConnected()) {
             let url = this.navView.getUrl();
             if (!url.startsWith('ws://')) {
                 url = 'ws://' + url;
             }
-            this.client.connect(url);
+            this.client.connect(url, function () {
+                self.navView.showDisconnected();
+            });
             this.navView.showConnected();
         } else {
             this.client.disconnect();
