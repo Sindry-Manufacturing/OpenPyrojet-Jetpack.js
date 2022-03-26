@@ -1,8 +1,20 @@
 export class ConfigView {
-    constructor() {
+    constructor(client) {
         this.nozzlePins = $('#NozzlePins');
         this.heatingDuration = $('#HeatingDuration');
         this.triggerDelay = $('#TriggerDelay');
+        this.saveButton = $('#ConfigSave');
+
+        let self = this;
+        this.saveButton.click(function () {
+            let pins = self.nozzlePins.val().split(",").map(Number);
+            let config = {
+                nozzlePins : pins,
+                heatingDuration : parseInt(self.heatingDuration.val()),
+                triggerDelay : parseInt(self.triggerDelay.val())
+            };
+            client.sendPutConfig(config);
+        })
     }
 
     update(config) {

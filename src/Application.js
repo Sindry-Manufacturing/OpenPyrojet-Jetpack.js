@@ -8,7 +8,7 @@ export class Application {
         let self = this;
         this.client = new Client();
         this.modeView = new ModeView();
-        this.configView = new ConfigView();
+        this.configView = new ConfigView(this.client);
         this.navView = new NavView(
             $('#ServerUrl'),
             $('#ConnectButton'),
