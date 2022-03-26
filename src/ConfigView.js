@@ -4,6 +4,8 @@ export class ConfigView {
         this.heatingDuration = $('#HeatingDuration');
         this.triggerDelay = $('#TriggerDelay');
         this.saveButton = $('#ConfigSave');
+        this.nozzleId = $('#NozzleId');
+        this.fireButton = $('#FireNozzle');
 
         let self = this;
         this.saveButton.click(function () {
@@ -14,7 +16,12 @@ export class ConfigView {
                 triggerDelay : parseInt(self.triggerDelay.val())
             };
             client.sendPutConfig(config);
-        })
+        });
+
+        this.fireButton.click(function () {
+            let nozzleId = parseInt(self.nozzleId.val());
+            client.sendFireNozzle(nozzleId);
+        });
     }
 
     update(config) {
