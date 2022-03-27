@@ -27,6 +27,10 @@ export class Application {
             this.client.connect(
                 url,
                 function () {
+                    self.navView.showConnected();
+                    self.modeView.showConnected();
+                },
+                function () {
                     self.navView.showDisconnected();
                     self.modeView.showDisconnected();
                 },
@@ -35,11 +39,9 @@ export class Application {
                 }
             );
             this.navView.showConnected();
-            this.modeView.showConnected();
+            this.modeView.showConnecting();
         } else {
             this.client.disconnect();
-            this.navView.showDisconnected();
-            this.modeView.showDisconnected();
         }
     }
 }

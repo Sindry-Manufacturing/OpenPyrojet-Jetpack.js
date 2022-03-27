@@ -5,6 +5,7 @@ export class Client {
 
     connect(
         url,
+        onConnected,
         onDisconnected,
         onConfig
     ) {
@@ -35,6 +36,7 @@ export class Client {
         this.connection.onopen = function(event) {
             console.log('Connected to', event.target.url);
             self.sendGetConfig();
+            onConnected();
         }
 
         this.connection.onclose = function(event) {
